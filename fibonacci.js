@@ -1,46 +1,62 @@
-// this program tries to find the next prime fibonacci number.
-// i.e. - given a input n, the `nxtPrmFib` function returns a number which is both prime and fibonacci and is greater than the input number.
+/**
+ * @param  {number} targetNum
+ * @returns {boolean} - whether prune number or not
+ */
 
-// the program below is complete and works as detailed in the requirements.
-// the task here is to:
+function isPruneNum(targetNum) {
+  // better to cut off odds number from performance viewpoint
+  // odds number should not be calculated
+  if (targetNum % 2 === 0) return false;
 
-// 1. rationalize and understand the code as best you can.
-// 2. open a PR to improve the code as you see fit.
+  // better to cut off calculating over Math.sqrt(num) from performance viewpoint
+  // ex. in case of 120 (can be divide into 10 * 12 )
+  // 12(> Math.sqrt(120)) would be unnecessary to be calculated
+  // because already 10 is appeared and suggests its  a element who can divide 120
 
-// Converting to an Angular app or typescript is not considered a necessity here.
-// We're mostly interested in understanding how engineers can critique the code & suggest improvements.
+  for (let i = 2; i < Math.sqrt(targetNum); i++) {
+    if (targetNum % i === 0) return false;
+  }
 
-var ispnum = function(num) {
-    for(var i = 2; i < num; i++)
-      if  (num % i === 0) return false;
-    return num > 1;
-};
-
-const fibonacci = (num) => {
-    if (num <= 1)return 1;
-  return fibonacci(num - 1) + fibonacci(num - 2);
-};
-
-function nxtPrmFib(number) {
-    let r = 0;
-    let l = 1;
-    while (true) {
-        var fib = fibonacci(l);
-        console.log('fib', fib, number);
-        if (fib > number) {
-            if (ispnum(fib)) {
-                r = fib;
-                break;
-                } else {
-                    l = l + 1;    
-                    console.warn('bumping to ', fib);
-                }
-            } else {
-                l = l + 1;
-                console.warn('bumping to', fib);
-            }
-    }
-    console.warn('Next prime fib ', r);
+  return targetNum > 1;
 }
 
-nxtPrmFib(20);
+// /**
+//  * @param  {number} index
+//  * @return {number} - fibonacci number
+//  */
+
+// function fibonacci(index) {
+//   if (index <= 1) {
+//     return 1;
+//   }
+//   return fibonacci(index - 1) + fibonacci(index - 2);
+// }
+
+/**
+ * @param  {number}  targetNum
+ * @return {number}  the minimum fibonacci & prune number over targetNum
+ */
+
+function nxtPrmFib(targetNum) {
+  const fibonacciCache = [1, 2];
+
+  if (targetNum <= 2) return 2;
+
+  while (true) {
+    //ex.
+    //fibonacciCache =>  [1,2] [2,3] [3,5] [5,8] ...[89,144]
+    let tmp = fibonacciCache[0];
+    fibonacciCache[0] = fibonacciCache[1];
+    fibonacciCache[1] = tmp + fibonacciCache[1];
+
+    if (fibonacciCache[1] >= targetNum) {
+      if (isPruneNum(fibonacciCache[1])) {
+        break;
+      }
+    }
+  }
+  return fibonacciCache[1];
+}
+
+//console.log(nxtPrmFib(20));
+module.exports = nxtPrmFib;

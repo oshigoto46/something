@@ -1,0 +1,25 @@
+{
+  "name": "something",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fibonacci.js",
+  "scripts": {
+    "test": "mocha fibonacci.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oshigoto46/something.git"
+  },
+  "author": "s-tabuchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oshigoto46/something/issues"
+  },
+  "homepage": "https://github.com/oshigoto46/something#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "dependencies": {
+    "mocha": "^9.1.1"
+  }
+}
