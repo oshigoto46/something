@@ -9,7 +9,7 @@ function isPrimeNum(targetNum) {
   if (targetNum % 2 === 0) return false;
 
   // better to cut off calculating over Math.sqrt(num) from performance viewpoint
-  for (let i = 2; i < Math.sqrt(targetNum); i++) {
+  for (let i = 2; i <= Math.sqrt(targetNum); i++) {
     if (targetNum % i === 0) return false;
   }
 
@@ -30,13 +30,13 @@ function isPrimeNum(targetNum) {
 
 /**
  * @param  {number}  targetNum
- * @return {number}  the minimum fibonacci & prime number over targetNum
+ * @returns {number}  the minimum fibonacci & prime number over targetNum
  */
 
 function nxtPrmFib(targetNum) {
   const fibonacciCache = [1, 2];
 
-  if (targetNum <= 2) return 2;
+  if (targetNum < 2) return 2;
 
   while (true) {
     //ex.

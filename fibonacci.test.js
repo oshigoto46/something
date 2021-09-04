@@ -4,8 +4,8 @@ const nxtPrmFib = require("./fibonacci");
 
 describe("fibonacci & prune number for small numbers", () => {
   it("equals test of some cases", () => {
-    //assert.equal(nxtPrmFib(1), 2);
-    //assert.equal(nxtPrmFib(2), 2);
+    assert.equal(nxtPrmFib(1), 2);
+    assert.equal(nxtPrmFib(2), 3);
     assert.equal(nxtPrmFib(3), 5);
     assert.equal(nxtPrmFib(11), 13);
     assert.equal(nxtPrmFib(20), 89);
